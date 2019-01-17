@@ -189,26 +189,29 @@ HAVING avg_salary = (SELECT
 -- 문제8.
 -- 현재 자신의 매니저보다 높은 연봉을 받고 있는 직원은?
 -- 부서이름, 사원이름, 연봉, 매니저 이름, 메니저 연봉 순으로 출력합니다.
-select f.dept_name as '부서이름', 
-       a.first_name as '사원이름',
-       d.salary as '연봉',
-       g.first_name as '매니저 이름',
-       e.salary as '매니저 연봉'
-  from employees a,
-       dept_emp b,
-       dept_manager c,
-       salaries d,
-       salaries e,
-       departments f,
-       employees g
- where a.emp_no = b.emp_no
-   and c.dept_no = b.dept_no
-   and a.emp_no = d.emp_no
-   and c.emp_no = e.emp_no
-   and c.dept_no = f.dept_no
-   and c.emp_no = g.emp_no
-   and b.to_date = '9999-01-01'
-   and c.to_date = '9999-01-01'
-   and d.to_date = '9999-01-01'
-   and e.to_date = '9999-01-01'
-   and d.salary > e.salary;
+SELECT 
+    f.dept_name AS '부서이름',
+    a.first_name AS '사원이름',
+    d.salary AS '연봉',
+    g.first_name AS '매니저 이름',
+    e.salary AS '매니저 연봉'
+FROM
+    employees a,
+    dept_emp b,
+    dept_manager c,
+    salaries d,
+    salaries e,
+    departments f,
+    employees g
+WHERE
+    a.emp_no = b.emp_no
+        AND c.dept_no = b.dept_no
+        AND a.emp_no = d.emp_no
+        AND c.emp_no = e.emp_no
+        AND c.dept_no = f.dept_no
+        AND c.emp_no = g.emp_no
+        AND b.to_date = '9999-01-01'
+        AND c.to_date = '9999-01-01'
+        AND d.to_date = '9999-01-01'
+        AND e.to_date = '9999-01-01'
+        AND d.salary > e.salary;
